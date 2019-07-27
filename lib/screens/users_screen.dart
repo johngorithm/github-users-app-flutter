@@ -3,6 +3,7 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/screens/profile_screen.dart';
+import 'package:github_users_flutter/constants/index.dart';
 
 
 Future<dynamic> fetchUsers() async {
@@ -120,10 +121,14 @@ class UserCard extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
             Container(
-              height: 100.0,
-              width: 100.0,
+              height: 80.0,
+              width: 80.0,
               decoration: BoxDecoration(
                 shape: BoxShape.circle,
+                border: Border.all(
+                  color: Colors.white,
+                  width: 2.0
+                ),
                 image: DecorationImage(
                   fit: BoxFit.fill,
                   image: NetworkImage(user.avatarUrl),
@@ -137,6 +142,7 @@ class UserCard extends StatelessWidget {
               user.username,
               style: TextStyle(
                 fontSize: 17.0,
+                color: Colors.white
               ),
             ),
           ],

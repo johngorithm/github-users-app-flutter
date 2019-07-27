@@ -35,3 +35,5 @@ const kCardBoxShadow = [
     offset: Offset(0, 2.0),
   ),
 ];
+
+const kNotProvided = 'Not provide 🧐';

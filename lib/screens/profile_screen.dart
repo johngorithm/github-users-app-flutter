@@ -156,17 +156,17 @@ class ProfileBody extends StatelessWidget {
             children: <Widget>[
               DetailItem(
                 field: 'Name',
-                value: data.name ?? 'N/A',
+                value: data.name ?? kNotProvided,
               ),
               kPrimaryDivider,
               DetailItem(
                 field: 'Company',
-                value: data.company ?? 'N/A',
+                value: data.company ?? kNotProvided,
               ),
               kPrimaryDivider,
               DetailItem(
                 field: 'Location',
-                value: data.location ?? 'N/A',
+                value: data.location ?? kNotProvided,
               ),
             ],
           ),
@@ -386,7 +386,7 @@ class Bio extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Text(
-                bio ?? 'Not provide 🧐',
+                bio ?? kNotProvided,
                 textAlign: TextAlign.left,
               ),
             )

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
+import 'package:share/share.dart';
 import 'package:github_users_flutter/models/user_profile.dart';
 import 'package:github_users_flutter/constants/index.dart';
 
@@ -55,7 +56,9 @@ class ProfileScreen extends StatelessWidget {
       floatingActionButton: FloatingActionButton(
         backgroundColor: Colors.white,
         onPressed: () {
-
+          Share.share(
+            'Checkout this awesome developer @$username https://github.com/$username'
+          );
         },
         child: Icon(
           Icons.share,

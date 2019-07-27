@@ -54,15 +54,14 @@ class ProfileScreen extends StatelessWidget {
         },
       ),
       floatingActionButton: FloatingActionButton(
-        backgroundColor: Colors.white,
+        backgroundColor: accentColor,
         onPressed: () {
           Share.share(
-            'Checkout this awesome developer @$username https://github.com/$username'
-          );
+              'Checkout this awesome developer @$username https://github.com/$username');
         },
         child: Icon(
           Icons.share,
-          color: primaryDark,
+          color: Colors.white,
         ),
       ),
     );
@@ -81,7 +80,7 @@ class ProfileBody extends StatelessWidget {
       children: <Widget>[
         Container(
           height: 250.0,
-          padding: EdgeInsets.only(top: 25.0),
+          padding: EdgeInsets.only(top: 35.0),
           decoration: BoxDecoration(
             color: Colors.white,
             image: kDecorationImage,
@@ -108,9 +107,10 @@ class ProfileBody extends StatelessWidget {
                       ),
                       boxShadow: [
                         BoxShadow(
-                          color: Colors.black12,
-                          blurRadius: 5.0,
-                          spreadRadius: 5,
+                          color: Color(0x25000000),
+                          blurRadius: 10.0,
+                          spreadRadius: 6,
+                          offset: Offset(0, 5.0),
                         ),
                       ]),
                   child: Row(
@@ -305,14 +305,6 @@ class ItemsCard extends StatelessWidget {
         borderRadius: BorderRadius.all(
           Radius.circular(5.0),
         ),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.black12,
-            blurRadius: 2.0,
-            spreadRadius: 2.0,
-            offset: Offset(0, 2.0),
-          ),
-        ],
       ),
       child: child,
     );

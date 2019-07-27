@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 
-
 const primaryLight = Color(0xFF313EBB);
 const primaryDark = Color(0xFF2D239F);
 const secondaryLight = Colors.blueAccent;
+const accentColor = Color(0xFFFE7050);
 
 const kDetailValueTextStyle = TextStyle(
   color: Colors.white,
@@ -26,3 +26,12 @@ const kDecorationImage = DecorationImage(
     'images/for_geek_directory2.jpg',
   ),
 );
+
+const kCardBoxShadow = [
+  BoxShadow(
+    color: Colors.black12,
+    blurRadius: 2.0,
+    spreadRadius: 2.0,
+    offset: Offset(0, 2.0),
+  ),
+];

@@ -36,4 +36,4 @@ const kCardBoxShadow = [
   ),
 ];
 
-const kNotProvided = 'Not provide 🧐';
+const kNotProvided = 'Not provided 🧐';

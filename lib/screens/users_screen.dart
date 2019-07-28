@@ -3,7 +3,6 @@ import 'package:http/http.dart' as http;
 import 'dart:convert' as convert;
 import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/screens/profile_screen.dart';
-import 'package:github_users_flutter/constants/index.dart';
 
 
 Future<dynamic> fetchUsers() async {

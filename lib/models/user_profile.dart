@@ -32,7 +32,7 @@ class UserProfile {
       location: data['location'],
       company: data['company'],
       bio: data['bio'],
-      publicGists: data['public_repos'],
+      publicGists: data['public_gists'],
       publicRepos: data['public_repos']
     );
   }

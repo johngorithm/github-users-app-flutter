@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_staggered_grid_view/flutter_staggered_grid_view.dart';
 import 'package:github_users_flutter/models/list_user.dart';
+import 'package:github_users_flutter/components/user_card.dart';
+import 'package:github_users_flutter/screens/profile_screen.dart';
+
 
 class UsersGrid extends StatelessWidget {
   final List<ListUser> users;
@@ -9,21 +11,33 @@ class UsersGrid extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print('I am here');
-    print(users.length);
-    return StaggeredGridView.countBuilder(
-      scrollDirection: Axis.vertical,
-      shrinkWrap: true,
-      mainAxisSpacing: 4.0,
-      crossAxisSpacing: 4.0,
-      crossAxisCount: 4,
-      itemCount: users.length,
-      itemBuilder: (BuildContext context, int index) {
-        print(index);
-        return Text(users[index].username);
-      },
-      staggeredTileBuilder: (int index) =>
-          new StaggeredTile.count(2, index.isEven ? 2 : 1),
+    return Expanded(
+      child: Padding(
+        padding:
+        EdgeInsets.only(
+            left: 10.0,
+            right: 10.0,
+            bottom: 0.0),
+        child: GridView.count(
+          scrollDirection: Axis.vertical,
+          shrinkWrap: true,
+          crossAxisCount: 2,
+          crossAxisSpacing: 10,
+          mainAxisSpacing: 10.0,
+          children: List.generate(users.length, (index) {
+            ListUser user = users[index];
+
+            return GestureDetector(
+              onTap: () {
+                Navigator.push(context, MaterialPageRoute(builder: (context) {
+                  return ProfileScreen(username: user.username);
+                }));
+              },
+              child: UserCard(user: user),
+            );
+          }),
+        ),
+      ),
     );
   }
 }

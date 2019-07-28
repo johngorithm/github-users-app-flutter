@@ -1,23 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
+
 import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/screens/profile_screen.dart';
+import 'package:github_users_flutter/services/api_service.dart';
 
 
-Future<dynamic> fetchUsers() async {
-  List<ListUser> users = [];
-
-  http.Response response = await http.get(
-      'https://api.github.com/search/users?q=+language:java+location:nairobi&per_page=100');
-  if (response.statusCode == 200) {
-    var data = convert.jsonDecode(response.body);
-    data['items'].forEach((user) {
-      users.add(ListUser.fromJSON(user));
-    });
-    return users;
-  }
-}
 
 class UsersScreen extends StatelessWidget {
   @override
@@ -49,8 +36,10 @@ class UsersScreen extends StatelessWidget {
                     ),
                   );
                 } else if (snapshot.hasError) {
-                  return Center(
-                    child: Text('Oop!... Something went wrong'),
+                  return Expanded(
+                    child: Center(
+                      child: Text('Oop!... Something went wrong. Mind trying again?'),
+                    ),
                   );
                 } else if (snapshot.hasData) {
                   /**
@@ -75,21 +64,25 @@ class UsersScreen extends StatelessWidget {
                         crossAxisSpacing: 10,
                         mainAxisSpacing: 10.0,
                         children: List.generate(users.length, (index) {
+                          ListUser user = users[index];
+
                           return GestureDetector(
                             onTap: () {
                               Navigator.push(context, MaterialPageRoute(builder: (context) {
-                                return ProfileScreen(username: users[index].username);
+                                return ProfileScreen(username: user.username);
                               }));
                             },
-                            child: UserCard(user: users[index]),
+                            child: UserCard(user: user),
                           );
                         }),
                       ),
                     ),
                   );
                 } else {
-                  return Text(
-                    'I don\'t understand what happend',
+                  return Expanded(
+                    child: Text(
+                      'Not sure what went wrong. Mind trying again?',
+                    ),
                   );
                 }
               },

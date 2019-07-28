@@ -1,53 +1,42 @@
 import 'package:flutter/material.dart';
-import 'package:http/http.dart' as http;
-import 'dart:convert' as convert;
 import 'package:share/share.dart';
 import 'package:github_users_flutter/models/user_profile.dart';
 import 'package:github_users_flutter/constants/index.dart';
+
+import 'package:github_users_flutter/services/api_service.dart';
 
 class ProfileScreen extends StatelessWidget {
   final String username;
 
   ProfileScreen({this.username});
 
-  Future<dynamic> fetProfile() async {
-    Map<String, dynamic> data = {};
-
-    http.Response response = await http.get(
-        'https://api.github.com/users/$username?client_id=694ce0aafdfbc47ad583&client_secret=58709f1741ce72e8102a05b41412b38750bf1cd0');
-    if (response.statusCode == 200) {
-      data = convert.jsonDecode(response.body);
-    }
-
-    return UserProfile.fromJSON(data);
-  }
-
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryLight,
       body: FutureBuilder(
-        future: fetProfile(),
+        future: fetProfile(username),
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
-            return Center(
-              child: Padding(
-                padding: EdgeInsets.all(100.0),
+            return Expanded(
+              child: Center(
                 child: CircularProgressIndicator(),
               ),
             );
           } else if (snapshot.hasError) {
-            return Container(
+            return Expanded(
               child: Center(
-                child: Text('Oop!... Something went wrong'),
+                child: Text('Oop!... Something went wrong. Mind trying again?'),
               ),
             );
           } else if (snapshot.hasData) {
             return ProfileBody(data: snapshot.data);
           } else {
-            return Center(
-              child: Text(
-                'I don\'t understand what happend',
+            return Expanded(
+              child: Center(
+                child: Text(
+                  'Not sure what went wrong. Mind trying again?',
+                ),
               ),
             );
           }

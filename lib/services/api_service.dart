@@ -8,7 +8,7 @@ Future<dynamic> fetchUsers() async {
   List<ListUser> users = [];
 
   http.Response response = await http.get(
-      'https:///api.github.com/search/users?q=+language:java+location:nairobi&per_page=100');
+      'https://api.github.com/search/users?q=+language:java+location:nairobi&per_page=100');
   if (response.statusCode == 200) {
     var data = convert.jsonDecode(response.body);
     data['items'].forEach((user) {

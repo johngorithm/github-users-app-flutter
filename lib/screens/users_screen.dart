@@ -29,9 +29,8 @@ class UsersScreen extends StatelessWidget {
               future: fetchUsers(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Center(
-                    child: Padding(
-                      padding: EdgeInsets.only(top: 100.0),
+                  return Expanded(
+                    child: Center(
                       child: CircularProgressIndicator(),
                     ),
                   );

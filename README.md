@@ -15,4 +15,8 @@ Primarily, It shows data for Java developers in Nairobi, Kenya.
 ![share view](/images/share.png)
 
 
+#### Network Error View
+![network error view](/images/network_error.png)
+
+
 

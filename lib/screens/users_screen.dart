@@ -1,10 +1,14 @@
 import 'package:flutter/material.dart';
+import 'package:github_users_flutter/constants/index.dart';
 
 import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/services/api_service.dart';
 
 import 'package:github_users_flutter/components/users_grid.dart';
 
+const snackBar = SnackBar(
+  content: Text('No Internet Connection. Mind Trying Again'),
+);
 
 class UsersScreen extends StatelessWidget {
   @override
@@ -28,27 +32,32 @@ class UsersScreen extends StatelessWidget {
             FutureBuilder(
               future: fetchUsers(),
               builder: (BuildContext context, AsyncSnapshot snapshot) {
-                if (snapshot.connectionState == ConnectionState.waiting) {
-                  return Expanded(
-                    child: Center(
-                      child: CircularProgressIndicator(),
-                    ),
-                  );
-                } else if (snapshot.hasError) {
-                  return Expanded(
-                    child: Center(
-                      child: Text('Oop!... Something went wrong. Mind trying again?'),
-                    ),
-                  );
-                } else if (snapshot.hasData) {
-                  List<ListUser> users = snapshot.data;
-                  return UsersGrid(users: users);
-                } else {
-                  return Expanded(
-                    child: Text(
-                      'Not sure what went wrong. Mind trying again?',
-                    ),
-                  );
+                switch (snapshot.connectionState) {
+                  case ConnectionState.active:
+                  case ConnectionState.waiting:
+                    return Expanded(
+                      child: Center(
+                        child: CircularProgressIndicator(),
+                      ),
+                    );
+                  case ConnectionState.none:
+                    return unknownIOError();
+                  case ConnectionState.done:
+                    if (snapshot.hasData) {
+                      List<ListUser> users = snapshot.data;
+                      return UsersGrid(users: users);
+                    }
+
+                    if (snapshot.error
+                        .toString()
+                        .startsWith('SocketException')) {
+                      return networkErrorView(
+                          'Not Internet Connection.\nMind Trying again');
+                    }
+                    return networkErrorView('Network Error. Mind trying again');
+
+                  default:
+                    return unknownIOError();
                 }
               },
             ),
@@ -59,3 +68,38 @@ class UsersScreen extends StatelessWidget {
   }
 }
 
+Widget unknownIOError() {
+  return Expanded(
+    child: Center(
+      child: Text(
+        'Not sure what went wrong. Mind trying again?',
+      ),
+    ),
+  );
+}
+
+Widget networkErrorView(String message) {
+  return Expanded(
+    child: Center(
+      child: Column(
+        mainAxisAlignment: MainAxisAlignment.center,
+        crossAxisAlignment: CrossAxisAlignment.center,
+        children: <Widget>[
+          Icon(
+            Icons.signal_cellular_connected_no_internet_4_bar,
+            color: primaryDark,
+            size: 50.0,
+          ),
+          Text(
+            message,
+            textAlign: TextAlign.center,
+            style: TextStyle(
+              fontSize: 16.0,
+              color: secondaryLight,
+            ),
+          )
+        ],
+      ),
+    ),
+  );
+}

@@ -36,7 +36,7 @@ class Bio extends StatelessWidget {
             Expanded(
               flex: 3,
               child: Text(
-                bio ?? kNotProvided,
+                bio != null ? bio.trim() : kNotProvided,
                 textAlign: TextAlign.left,
               ),
             )

@@ -11,28 +11,44 @@ class RepoGist extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ItemsCard(
-      margin: EdgeInsets.only(
-        left: 15.0,
-        right: 15.0,
-      ),
-      padding: EdgeInsets.only(
-        top: 30.0,
-        bottom: 30,
-      ),
-      child: Row(
-        mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-        children: <Widget>[
-          FollowingsAndFollowers(
-            field: 'Repos',
-            value: repoCount,
+    return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
+
+      children: <Widget>[
+        Expanded(
+          child: ItemsCard(
+            margin: EdgeInsets.only(
+              left: 15.0,
+            ),
+              padding: EdgeInsets.only(
+                top: 30.0,
+                bottom: 30,
+              ),
+            child: FollowingsAndFollowers(
+              field: 'Repos',
+              value: repoCount,
+            )
           ),
-          FollowingsAndFollowers(
-            field: 'Gists',
-            value: gistCount,
-          )
-        ],
-      ),
+        ),
+        SizedBox(
+          width: 10.0,
+        ),
+        Expanded(
+          child: ItemsCard(
+              margin: EdgeInsets.only(
+                right: 15.0,
+              ),
+              padding: EdgeInsets.only(
+                top: 30.0,
+                bottom: 30,
+              ),
+              child: FollowingsAndFollowers(
+                field: 'Gists',
+                value: gistCount,
+              )
+          ),
+        )
+      ],
     );
   }
 }

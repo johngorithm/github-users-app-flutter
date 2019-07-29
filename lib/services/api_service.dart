@@ -14,8 +14,8 @@ Future<dynamic> fetchUsers() async {
     data['items'].forEach((user) {
       users.add(ListUser.fromJSON(user));
     });
-    return users;
   }
+  return users;
 }
 
 
@@ -26,7 +26,7 @@ Future<dynamic> fetProfile(String username) async {
       'https://api.github.com/users/$username?client_id=694ce0aafdfbc47ad583&client_secret=58709f1741ce72e8102a05b41412b38750bf1cd0');
   if (response.statusCode == 200) {
     data = convert.jsonDecode(response.body);
+    return UserProfile.fromJSON(data);
   }
 
-  return UserProfile.fromJSON(data);
 }

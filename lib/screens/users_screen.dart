@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:github_users_flutter/constants/index.dart';
 
 import 'package:github_users_flutter/models/list_user.dart';
-import 'package:github_users_flutter/services/api_service.dart';
 
 import 'package:github_users_flutter/components/users_grid.dart';
 
@@ -11,6 +10,10 @@ const snackBar = SnackBar(
 );
 
 class UsersScreen extends StatelessWidget {
+  final Future<List<ListUser>> users;
+
+  UsersScreen({this.users});
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -30,7 +33,7 @@ class UsersScreen extends StatelessWidget {
               ),
             ),
             FutureBuilder(
-              future: fetchUsers(),
+              future: users,
               builder: (BuildContext context, AsyncSnapshot snapshot) {
                 switch (snapshot.connectionState) {
                   case ConnectionState.active:

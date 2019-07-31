@@ -4,7 +4,7 @@ import 'dart:convert' as convert;
 import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/models/user_profile.dart';
 
-Future<dynamic> fetchUsers() async {
+Future<List<ListUser>> fetchUsers() async {
   List<ListUser> users = [];
 
   http.Response response = await http.get(

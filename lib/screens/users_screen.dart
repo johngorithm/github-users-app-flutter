@@ -72,7 +72,7 @@ Widget unknownIOError() {
   return Expanded(
     child: Center(
       child: Text(
-        'Not sure what went wrong. Mind trying again?',
+        'No sure what went wrong. Mind trying again?',
       ),
     ),
   );

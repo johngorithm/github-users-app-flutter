@@ -6,7 +6,7 @@ import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/components/users_grid.dart';
 
 const snackBar = SnackBar(
-  content: Text('No Internet Connection. Mind Trying Again'),
+  content: Text('No Internet Connection. Mind Trying Again?'),
 );
 
 class UsersScreen extends StatelessWidget {
@@ -55,9 +55,9 @@ class UsersScreen extends StatelessWidget {
                         .toString()
                         .startsWith('SocketException')) {
                       return networkErrorView(
-                          'Not Internet Connection.\nMind Trying again');
+                          'No Internet Connection.\nMind Trying again?');
                     }
-                    return networkErrorView('Network Error. Mind trying again');
+                    return networkErrorView('Network Error. Mind trying again?');
 
                   default:
                     return unknownIOError();

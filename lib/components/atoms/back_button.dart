@@ -9,13 +9,14 @@ class BackBtn extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Positioned(
-      top: 10.0,
+      top: 15.0,
       left: 15.0,
       child: GestureDetector(
         onTap: onPress,
         child: Icon(
           Icons.arrow_back,
           color: primaryDark,
+          size: 33.0,
         ),
       ),
     );

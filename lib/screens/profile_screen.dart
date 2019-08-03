@@ -3,19 +3,20 @@ import 'package:share/share.dart';
 import 'package:github_users_flutter/constants/index.dart';
 import 'package:github_users_flutter/components/profile_body.dart';
 
-import 'package:github_users_flutter/services/api_service.dart';
+
 
 class ProfileScreen extends StatelessWidget {
   final String username;
+  final Future<dynamic> profileData;
 
-  ProfileScreen({this.username});
+  ProfileScreen({this.profileData, this.username});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       backgroundColor: primaryLight,
       body: FutureBuilder(
-        future: fetProfile(username),
+        future: profileData,
         builder: (BuildContext context, AsyncSnapshot snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return Center(

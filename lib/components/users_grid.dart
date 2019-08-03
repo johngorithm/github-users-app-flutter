@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:github_users_flutter/models/list_user.dart';
 import 'package:github_users_flutter/components/user_card.dart';
 import 'package:github_users_flutter/screens/profile_screen.dart';
-
+import 'package:github_users_flutter/services/api_service.dart';
 
 class UsersGrid extends StatelessWidget {
   final List<ListUser> users;
@@ -13,11 +13,7 @@ class UsersGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding:
-        EdgeInsets.only(
-            left: 10.0,
-            right: 10.0,
-            bottom: 0.0),
+        padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 0.0),
         child: GridView.count(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,
@@ -30,7 +26,11 @@ class UsersGrid extends StatelessWidget {
             return GestureDetector(
               onTap: () {
                 Navigator.push(context, MaterialPageRoute(builder: (context) {
-                  return ProfileScreen(username: user.username);
+                  String username = user.username;
+                  return ProfileScreen(
+                    username: username,
+                    profileData: fetProfile(username),
+                  );
                 }));
               },
               child: UserCard(user: user),

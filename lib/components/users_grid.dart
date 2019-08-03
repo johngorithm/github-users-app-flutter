@@ -13,7 +13,7 @@ class UsersGrid extends StatelessWidget {
   Widget build(BuildContext context) {
     return Expanded(
       child: Padding(
-        padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 0.0),
+        padding: EdgeInsets.only(left: 10.0, right: 10.0, bottom: 10.0),
         child: GridView.count(
           scrollDirection: Axis.vertical,
           shrinkWrap: true,

@@ -57,7 +57,8 @@ class UsersScreen extends StatelessWidget {
                       return networkErrorView(
                           'No Internet Connection.\nMind Trying again?');
                     }
-                    return networkErrorView('Network Error. Mind trying again?');
+                    return networkErrorView(
+                        'Network Error. Mind trying again?');
 
                   default:
                     return unknownIOError();

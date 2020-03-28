@@ -1,6 +1,5 @@
 # github-users-app-flutter
-This is a mobile app built with flutter and consumes github API.
-Primarily, It shows data for Java developers in Nairobi, Kenya.
+A Flutter Mobile app consuming GitHub API.
 
 
 #### List View
